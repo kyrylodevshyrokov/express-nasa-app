@@ -31,7 +31,7 @@ describe("Test POST /launches", () => {
     launchDate: "hello",
   };
 
-  test("It should respond with 200 success", async () => {
+  test("It should respond with 201 created", async () => {
     const response = await request(app)
       .post("/launches")
       .send(completeLaunchData)
