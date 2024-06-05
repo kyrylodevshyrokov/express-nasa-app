@@ -23,13 +23,13 @@ This project is a convenient manager for tracking space missions conducted under
 ## Getting Started:
 1. Clone the repository to your local machine.
 2. Ensure that Node.js is installed.
-3. Create a .env file in the server folder and fill it according to the example for connecting to Mongo Atlas:
+3. Create a `.env` file in the server folder and fill it according to the example for connecting to Mongo Atlas:
 ```javascript
 PORT=your_port
 MONGO_URL=your_mongo_atlas_url
 ```
 4. Install all dependencies using the command `npm install` in the root of your project. This command includes subcommands for both the client and server sides of the application.
-5. Start your project using the command `npm run deploy`. This command builds the client part of the project and places it in the public folder of the server part, then starts the server part of the project. Here's how the command looks in full:
+5. Start your project using the command `npm run deploy`. This command builds the client part of the project and places it in the `public` folder of the server part, then starts the server part of the project. Here's how the command looks in full:
 ```javascript
 npm run build --prefix client && npm start --prefix server
 ```
@@ -38,7 +38,7 @@ npm run build --prefix client && npm start --prefix server
 ### Docker:
 1. Ensure that the latest version of Docker is installed on your computer.
 2. Run the command `docker build -t your_image_tag_name .` to create a Docker image with all dependencies of your project in Docker (e.g., `docker build -t nasa-app .`).
-3. Run the command `docker run -it -p host_port:docker_port your_image_tag_name` to launch a Docker container based on the generated Docker image (e.g., `docker run -it -p 8000:8000 nasa-app`). Use the same port that you wrote in your .env file.
+3. Run the command `docker run -it -p host_port:docker_port your_image_tag_name` to launch a Docker container based on the generated Docker image (e.g., `docker run -it -p 8000:8000 nasa-app`). Use the same port that you wrote in your `.env` file.
 
 ## Testing:
 To run automated tests, execute the following command:
