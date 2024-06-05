@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../../app");
 const { mongoConnect, mongoDisconnect } = require("../../services/mongo");
 const { loadPlanetsData } = require("../../models/planets.model");
+const status = require("http-status");
 
 describe("Launches API", () => {
   beforeAll(async () => {
@@ -18,7 +19,7 @@ describe("Launches API", () => {
       await request(app)
         .get("/v1/launches")
         .expect("Content-Type", /json/)
-        .expect(200);
+        .expect(status.OK);
     });
   });
 
@@ -48,7 +49,7 @@ describe("Launches API", () => {
         .post("/v1/launches")
         .send(completeLaunchData)
         .expect("Content-Type", /json/)
-        .expect(201);
+        .expect(status.CREATED);
 
       const requestDate = new Date(completeLaunchData.launchDate).valueOf();
       const responseDate = new Date(response.body.launchDate).valueOf();
@@ -63,7 +64,7 @@ describe("Launches API", () => {
         .post("/v1/launches")
         .send(LaunchDataWithoutDate)
         .expect("Content-Type", /json/)
-        .expect(400);
+        .expect(status.BAD_REQUEST);
 
       expect(response.body).toStrictEqual({
         error: "Missing required launch property",
@@ -75,7 +76,7 @@ describe("Launches API", () => {
         .post("/v1/launches")
         .send(LaunchDataWithInvalidDate)
         .expect("Content-Type", /json/)
-        .expect(400);
+        .expect(status.BAD_REQUEST);
 
       expect(response.body).toStrictEqual({
         error: "Invalid launch date",

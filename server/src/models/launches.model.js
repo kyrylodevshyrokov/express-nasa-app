@@ -2,6 +2,7 @@ const axios = require("axios");
 
 const launchesDatabase = require("./launches.mongo");
 const planets = require("./planets.mongo");
+const status = require('http-status')
 
 const DEFAULT_FLIGHT_NUMBER = 100;
 
@@ -30,7 +31,7 @@ async function populateLaunches() {
     },
   });
 
-  if (response.status !== 200) {
+  if (response.status !== status.OK) {
     console.log("Problem downloading launch data");
     throw new Error("Launch data download failed");
   }
